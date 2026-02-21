@@ -1,59 +1,34 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-//! Error types for Kea-Bivouac
+
+//! Kea-Bivouac Error Space.
+//!
+//! This module defines all possible failure modes for the Bivouac controller.
+//! It uses the `thiserror` crate to provide high-fidelity error messages 
+//! while maintaining low-overhead error propagation.
 
 use thiserror::Error;
 
-/// Result type alias for Kea-Bivouac operations
 pub type Result<T> = std::result::Result<T, BivouacError>;
 
-/// Errors that can occur during Bivouac operations
 #[derive(Error, Debug)]
 pub enum BivouacError {
-    /// Configuration file not found
+    /// CONFIG: The required bivouac.toml file is missing.
     #[error("Configuration file not found: {path}")]
     ConfigNotFound { path: String },
 
-    /// Invalid configuration format
-    #[error("Invalid configuration: {message}")]
-    InvalidConfig { message: String },
-
-    /// Playbook parsing error
+    /// SPEC: The playbook file is syntactically or logically malformed.
     #[error("Failed to parse playbook '{path}': {message}")]
     PlaybookParseError { path: String, message: String },
 
-    /// Playbook not found
-    #[error("Playbook not found: {name}")]
-    PlaybookNotFound { name: String },
-
-    /// Action execution failed
+    /// EXECUTION: A concrete playbook action (e.g. Command) failed at runtime.
     #[error("Action '{action}' failed: {message}")]
     ActionFailed { action: String, message: String },
 
-    /// mTLS configuration error
+    /// SECURITY: Failure during mTLS negotiation or certificate loading.
     #[error("mTLS configuration error: {message}")]
     MtlsError { message: String },
 
-    /// Certificate error
-    #[error("Certificate error: {message}")]
-    CertificateError { message: String },
-
-    /// IO error wrapper
+    /// BRIDGE: Wrapped IO or serialization errors.
     #[error("IO error: {0}")]
     IoError(#[from] std::io::Error),
-
-    /// TOML parsing error
-    #[error("TOML parse error: {0}")]
-    TomlError(#[from] toml::de::Error),
-
-    /// JSON parsing error
-    #[error("JSON error: {0}")]
-    JsonError(#[from] serde_json::Error),
-
-    /// Command not found
-    #[error("Command not found: {command}")]
-    CommandNotFound { command: String },
-
-    /// Invalid trigger name
-    #[error("Invalid trigger: {name}")]
-    InvalidTrigger { name: String },
 }

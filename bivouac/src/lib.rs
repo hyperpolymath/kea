@@ -1,19 +1,22 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-//! Kea-Bivouac: Orchestration and deployment controller for the Kea ecosystem
+
+//! Kea-Bivouac — Strategic Orchestration and Deployment Controller.
 //!
-//! The Bivouac is the strategic "Roost" where the Flock's actions are coordinated.
-//! It manages the Separation of Administration from Runtime, ensuring the "Wharf"
-//! remains invisible to the "Range."
+//! The Bivouac is the "Brain" of the Kea ecosystem. It coordinates the actions
+//! of the "Flock" (satellite nodes) and manages the lifecycle of invisible 
+//! infrastructure.
 //!
-//! # Features
-//!
-//! * **Nomadic Deployment:** Uses Resource-Record-Fluctuator to rotate IP/DNS locations
-//! * **Playbook Execution:** Directly interprets PLAYBOOK.scm files to resolve incidents
-//! * **mTLS Integrity:** Enforces zero-trust communication between all satellites and Refugia
+//! DESIGN PATTERNS:
+//! 1. **Nomadic Deployment**: Continuous rotation of infrastructure identifiers 
+//!    (IPs, DNS records) to evade detection.
+//! 2. **Administrative Isolation**: Complete separation of the "Wharf" (Admin) 
+//!    from the "Range" (Runtime).
+//! 3. **mTLS Everywhere**: Mandatory mutual TLS for all control-plane traffic.
 
 pub mod config;
 pub mod error;
 pub mod playbook;
 
+// RE-EXPORTS: Primary types for consuming services.
 pub use config::Config;
 pub use error::{BivouacError, Result};
