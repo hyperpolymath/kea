@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Playbook: Automated failover procedure
+#
+# This playbook handles service failover when health checks indicate
+# a primary service is unavailable.
+
+name = "failover"
+description = "Automated failover to backup services"
+version = "1.0"
+continue_on_error = true
+timeout_secs = 600
+
+[trigger]
+type = "health-check-failure"
+service = "primary"
+
+[[actions]]
+type = "log"
+level = "warn"
+message = "Initiating failover procedure due to primary service failure."
+
+[[actions]]
+type = "rotate-dns"
+zone = "kea.example.com"
+record = "app"
+ttl = 60
+
+[[actions]]
+type = "wait"
+seconds = 5
+
+[[actions]]
+type = "command"
+cmd = "echo 'Verifying backup service health'"
+timeout_secs = 30
+
+[[actions]]
+type = "notify"
+channel = "slack"
+message = "Failover completed. Traffic now routed to backup service."
+
+[actions.metadata]
+status = "complete"
+
+[[actions]]
+type = "log"
+level = "info"
+message = "Failover procedure completed successfully."

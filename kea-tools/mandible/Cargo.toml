@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Kea-Mandible: High-dexterity investigative sensors for Kea
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/kea-mandible",
+    "crates/kea-beak",
+    "crates/wp-praxis",
+    "crates/slop-gate",
+]
+
+[workspace.package]
+version = "1.0.0"
+authors = ["Jonathan D.A. Jewell <hyperpolymath@proton.me>"]
+edition = "2021"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/hyperpolymath/kea-mandible"
+description = "High-dexterity investigative sensors for Kea ecosystem"
+keywords = ["audit", "security", "filesystem", "wordpress"]
+categories = ["command-line-utilities", "development-tools"]
+
+[workspace.dependencies]
+# Core dependencies
+tokio = { version = "1.43", features = ["full"] }
+clap = { version = "4.5", features = ["derive", "env"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Filesystem
+walkdir = "2.5"
+ignore = "0.4"
+globset = "0.4"
+notify = "7.0"
+
+# Async runtime
+futures = "0.3"
+async-trait = "0.1"
+
+# Serialization formats
+toml = "0.8"
+capnp = "0.20"
+capnp-futures = "0.20"
+
+# Security/Hashing
+sha2 = "0.10"
+blake3 = "1.5"
+
+# Testing
+tempfile = "3.14"
+assert_cmd = "2.0"
+predicates = "3.1"

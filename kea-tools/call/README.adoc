@@ -1,0 +1,49 @@
+= Kea-Call: The Contact-Signalling Protocol
+
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+Jonathan D.A. Jewell
+v1.0.0-draft.1, December 2025
+:description: Cap'n Proto and MCP definitions for the Kea ecosystem.
+
+== Purpose
+Kea-Call is the "Signal" clade. It codifies the relational language used by the flock to coordinate state changes, audit findings, and recovery commands. By utilizing zero-copy binary serialization (Cap'n Proto), Kea-Call ensures that communication between the **Kea-Mandible** (Sensors) and **Kea-Wit** (Logic) is instantaneous and type-safe.
+
+== Protocol Architecture
+The protocol operates on a **Request-Signal-Action** loop:
+1. **The Signal:** A `Kea-Mandible` identifies a state change and emits a `ContactCall`.
+2. **The Mediation:** `Deno Deploy` edge nodes validate the signal's origin via `Januskey`.
+3. **The Resolve:** `Kea-Wit` consumes the signal and returns a `PlaybookInstruction`.
+
+[Image of a sequence diagram showing communication flow from sensor to edge to logic engine]
+
+== Schema Definition (Cap'n Proto)
+[source,capnp]
+----
+struct ContactCall {
+  id @0 :UInt64;
+  timestamp @1 :Int64;
+  origin @2 :Text;      # Satellite ID
+  finding @3 :Finding;
+}
+
+struct Finding {
+  path @0 :Text;
+  entropy @1 :Float32;
+  status @2 :Status;
+}
+
+enum Status { sharp @0; dull @1; drifting @2; violated @3; }
+----
+
+== MCP Integration (Model Context Protocol)
+Kea-Call acts as a high-assurance bridge for LLM-assisted orchestration. It provides a standardized MCP server that allows the **Kea-Bivouac** to query the status of any repo in the **Refugia** matrix using natural language structured by formal schemas.
+
+== Deployment
+The signalling logic is hosted on **Deno Deploy** to ensure that the "Brain" of the system remains accessible even if local infrastructure on **The Range** is undergoing fluctuation.
+
+== Usage
+[source,bash]
+----
+# Generate language-specific bindings (Rust, Logtalk, ReScript)
+just generate-bindings
+----

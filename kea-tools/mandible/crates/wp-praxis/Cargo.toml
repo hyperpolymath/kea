@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# WP-Praxis: WordPress environment auditor
+
+[package]
+name = "wp-praxis"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Specialized auditor for WordPress environments"
+keywords = ["wordpress", "audit", "security", "php"]
+
+[dependencies]
+kea-beak = { path = "../kea-beak" }
+walkdir.workspace = true
+ignore.workspace = true
+globset.workspace = true
+tokio.workspace = true
+futures.workspace = true
+async-trait.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+sha2.workspace = true
+toml.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

@@ -1,0 +1,26 @@
+= Kea-Bivouac: The Command Authority
+
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+Jonathan D.A. Jewell
+v1.0.0-draft.1, December 2025
+:description: Orchestration and deployment controller for the Kea ecosystem.
+
+== Purpose
+The Bivouac is the strategic "Roost" where the Flock's actions are coordinated. It manages the **Separation of Administration from Runtime**, ensuring the "Wharf" remains invisible to the "Range."
+
+== Features
+* **Nomadic Deployment:** Uses `Resource-Record-Fluctuator` to rotate IP/DNS locations.
+* **Playbook Execution:** Directly interprets `PLAYBOOK.scm` files to resolve incidents.
+* **mTLS Integrity:** Enforces zero-trust communication between all satellites and Refugia.
+
+
+
+== The "Wharf-to-Yacht" Model
+The Bivouac (Wharf) never resides on the same network layer as the Range (Yacht). Communication is strictly outbound from the Bivouac via secure `Kea-Calls`.
+
+== Usage
+[source,bash]
+----
+# Execute a failover procedure defined in the Playbook
+just trigger-playbook integrity-violation
+----

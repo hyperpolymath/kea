@@ -1,0 +1,6 @@
+homepage: "https://github.com/hyperpolymath/kea-mandible"
+language: rust
+main_repo: "https://github.com/hyperpolymath/kea-mandible"
+sanitizers:
+  - address
+  - undefined

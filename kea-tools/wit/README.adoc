@@ -1,0 +1,81 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2024-2025 hyperpolymath
+
+= Kea Wit
+
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+:toc: auto
+:toclevels: 3
+:icons: font
+:source-highlighter: rouge
+
+Kea-based WIT (WebAssembly Interface Types) interface and tooling.
+
+== Status
+
+[IMPORTANT]
+====
+*Project specification will be uploaded shortly.*
+
+This repository has been initialized with infrastructure and governance files.
+Core implementation and detailed specifications are pending.
+====
+
+== Overview
+
+Kea Wit provides interface definitions and tooling for WebAssembly Component Model development, following the Hyperpolymath language policy.
+
+=== Intended Scope
+
+* WIT interface definitions for Kea ecosystem components
+* Tooling for WIT development, validation, and code generation
+* Integration with the WebAssembly Component Model
+
+=== Technology Stack
+
+Per the link:.claude/CLAUDE.md[Hyperpolymath Language Policy]:
+
+[cols="1,2"]
+|===
+|Domain |Technology
+
+|Systems/Core
+|Rust
+
+|Scripting
+|ReScript, Bash
+
+|Runtime
+|Deno (no Node.js/npm)
+
+|Configuration
+|Nickel, Guile Scheme
+|===
+
+== Repository Contents
+
+Currently, this repository contains project infrastructure only:
+
+[source]
+----
+kea-wit/
+├── .claude/CLAUDE.md      # AI assistant language policy
+├── .github/               # GitHub workflows and templates
+├── CODE_OF_CONDUCT.md     # Community guidelines (template)
+├── CONTRIBUTING.md        # Contribution guide (template)
+├── LICENSE.txt            # MIT OR PMPL-1.0-or-later
+├── README.adoc            # This file
+├── ROADMAP.adoc           # Development roadmap
+└── SECURITY.md            # Security policy
+----
+
+== License
+
+Dual-licensed under link:LICENSE.txt[MIT OR PMPL-1.0-or-later].
+
+Includes non-binding encouragement of https://github.com/hyperpolymath/palimpsest-license[Palimpsest License] principles for consent-based digital interaction.
+
+== Links
+
+* https://github.com/WebAssembly/component-model[WebAssembly Component Model]
+* https://component-model.bytecodealliance.org/design/wit.html[WIT Specification]

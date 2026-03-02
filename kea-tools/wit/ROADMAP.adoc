@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2024-2025 hyperpolymath
+
+= Kea Wit Roadmap
+:toc: auto
+:icons: font
+
+Development roadmap for Kea Wit - WebAssembly Interface Types tooling.
+
+== Current Status
+
+[NOTE]
+====
+*Repository initialized - awaiting project specification.*
+
+Detailed milestones and deliverables will be defined once the core specification is uploaded.
+====
+
+== Planned Phases
+
+=== Phase 0: Specification (Current)
+
+* [ ] Upload project specification
+* [ ] Define WIT interface scope
+* [ ] Document integration points with Kea ecosystem
+* [ ] Establish development environment (Nix/Guix)
+
+=== Phase 1: Foundation
+
+* [ ] Core WIT definitions
+* [ ] Development tooling setup (Rust, Deno)
+* [ ] CI/CD pipeline configuration
+* [ ] Initial test framework
+
+=== Phase 2: Implementation
+
+* [ ] WIT parser/validator (Rust)
+* [ ] Code generation tooling
+* [ ] ReScript bindings (where applicable)
+* [ ] Documentation and examples
+
+=== Phase 3: Integration
+
+* [ ] Kea ecosystem integration
+* [ ] Component composition tooling
+* [ ] Registry/package support
+* [ ] Community release
+
+== Contributing
+
+See link:CONTRIBUTING.md[CONTRIBUTING.md] for contribution guidelines.
+
+Once the specification is available, issues will be labelled with:
+
+* `good first issue` - Entry points for new contributors
+* `help wanted` - Community assistance needed
+* `specification` - Specification clarification needed
+
+== References
+
+* https://github.com/WebAssembly/component-model[WebAssembly Component Model]
+* https://component-model.bytecodealliance.org/design/wit.html[WIT Format Specification]
+* https://github.com/bytecodealliance/wit-bindgen[wit-bindgen] - Guest language bindings generator

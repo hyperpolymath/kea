@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Slop-Gate: Runtime bloat rejection filter
+
+[package]
+name = "slop-gate"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Actively rejects non-functional bloat in the runtime path"
+keywords = ["bloat", "filter", "optimization", "cleanup"]
+
+[dependencies]
+kea-beak = { path = "../kea-beak" }
+walkdir.workspace = true
+globset.workspace = true
+tokio.workspace = true
+futures.workspace = true
+async-trait.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Kea-Mandible: Main CLI and orchestration
+
+[package]
+name = "kea-mandible"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "High-dexterity investigative sensors for Kea ecosystem"
+keywords = ["audit", "security", "filesystem", "wordpress"]
+default-run = "kea-mandible"
+
+[[bin]]
+name = "kea-mandible"
+path = "src/main.rs"
+
+[dependencies]
+kea-beak = { path = "../kea-beak" }
+wp-praxis = { path = "../wp-praxis" }
+slop-gate = { path = "../slop-gate" }
+clap.workspace = true
+tokio.workspace = true
+futures.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+assert_cmd.workspace = true
+predicates.workspace = true

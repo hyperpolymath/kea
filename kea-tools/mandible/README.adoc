@@ -1,0 +1,28 @@
+= Kea-Mandible: The Investigative Mandible
+
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+Jonathan D.A. Jewell
+v1.0.0-draft.1, December 2025
+:description: High-dexterity investigative sensors for Kea.
+
+== Purpose
+Kea-Mandible provides the physical "reach" of the ecosystem. It is a prokinetic sensor suite designed to pry into filesystems, network configurations, and WordPress cores to identify instability and "Slop."
+
+== Components
+* **Kea-Beak:** The general-purpose Mercury-based system auditor.
+* **WP-Praxis:** A specialized Rust-based auditor for WordPress environments.
+* **Slop-Gate:** Actively rejects non-functional bloat in the runtime path.
+
+
+
+== Performance
+* **Throughput:** 10,000+ files per second.
+* **Accuracy:** 99.9% via formal Mercury type-checks.
+* **Output:** Encodes findings into `Kea-Call` (Cap'n Proto) format.
+
+== Usage
+[source,bash]
+----
+# Trigger a deep-audit of the runtime path
+just pry --target=/var/www/html
+----

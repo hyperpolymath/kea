@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Kea-Bivouac: Orchestration and deployment controller for the Kea ecosystem
+
+[package]
+name = "kea-bivouac"
+version = "1.0.0"
+edition = "2021"
+authors = ["Jonathan D.A. Jewell <hyperpolymath@users.noreply.github.com>"]
+description = "Orchestration and deployment controller for the Kea ecosystem"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/hyperpolymath/kea-bivouac"
+readme = "README.adoc"
+keywords = ["orchestration", "deployment", "kea", "mtls", "zero-trust"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.42", features = ["full"] }
+
+# Configuration parsing (for PLAYBOOK.scm files)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# CLI interface
+clap = { version = "4.5", features = ["derive", "env"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# TLS/mTLS support
+rustls = "0.23"
+tokio-rustls = "0.26"
+rustls-pemfile = "2.2"
+
+# Error handling
+thiserror = "2.0"
+anyhow = "1.0"
+
+# File system operations
+walkdir = "2.5"
+
+# Process execution
+which = "7.0"
+
+[dev-dependencies]
+tempfile = "3.14"
+assert_cmd = "2.0"
+predicates = "3.1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+
+[[bin]]
+name = "bivouac"
+path = "src/main.rs"
