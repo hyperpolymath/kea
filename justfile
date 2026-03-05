@@ -99,3 +99,8 @@ wit-build:
 doc:
     cd bivouac && cargo doc --workspace --no-deps
     cd mandible && cargo doc --workspace --no-deps
+
+# [AUTO-GENERATED] Multi-arch / RISC-V target
+build-riscv:
+	@echo "Building for RISC-V..."
+	cross build --target riscv64gc-unknown-linux-gnu
