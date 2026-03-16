@@ -118,9 +118,9 @@
       (file "CODE_OF_CONDUCT.md")
       (changes
         (replacement "{{PROJECT_NAME}}" "Kea-Call")
-        (replacement "{{OWNER}}" "hyperpolymath")
-        (replacement "{{REPO}}" "kea-call")
-        (replacement "{{FORGE}}" "github.com")
+        (replacement "hyperpolymath" "hyperpolymath")
+        (replacement "kea" "kea-call")
+        (replacement "github.com" "github.com")
         (replacement "{{CONDUCT_EMAIL}}" "conduct@hyperpolymath.com")
         (replacement "{{CONDUCT_TEAM}}" "Conduct Committee")
         (replacement "{{RESPONSE_TIME}}" "48 hours")
@@ -130,9 +130,9 @@
     (fix
       (file "CONTRIBUTING.md")
       (changes
-        (replacement "{{FORGE}}" "github.com")
-        (replacement "{{OWNER}}" "hyperpolymath")
-        (replacement "{{REPO}}" "kea-call")
+        (replacement "github.com" "github.com")
+        (replacement "hyperpolymath" "hyperpolymath")
+        (replacement "kea" "kea-call")
         (replacement "{{MAIN_BRANCH}}" "main")))
 
     (fix
