@@ -57,7 +57,7 @@ kea-call/
 ├── .nojekyll
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
-├── LICENSE.txt                # MIT OR AGPL-3.0-or-later
+├── LICENSE.txt                # MIT OR PMPL-1.0-or-later
 ├── README.adoc
 └── SECURITY.md
 ----
@@ -152,7 +152,7 @@ grep -rE "permissions:\s*write-all" .github/workflows/
 |===
 | File | Status
 | SECURITY.md | Present, Updated
-| LICENSE.txt | Present (MIT OR AGPL-3.0-or-later)
+| LICENSE.txt | Present (MIT OR PMPL-1.0-or-later)
 | .github/CODEOWNERS | Present
 | .github/dependabot.yml | Present
 |===

@@ -60,7 +60,7 @@
         (notes "SHA-pinned, read-only permissions")))
     (required-files
       (file (name "SECURITY.md") (present #t) (updated #t))
-      (file (name "LICENSE.txt") (present #t) (license "MIT OR AGPL-3.0-or-later"))
+      (file (name "LICENSE.txt") (present #t) (license "MIT OR PMPL-1.0-or-later"))
       (file (name ".github/CODEOWNERS") (present #t))
       (file (name ".github/dependabot.yml") (present #t)))
     (action-pinning
