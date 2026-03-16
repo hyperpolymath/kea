@@ -5,6 +5,7 @@
 //! for the Kea-Mandible ecosystem. It can process 10,000+ files per second
 //! and generate findings in a structured format.
 
+#![forbid(unsafe_code)]
 use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 

@@ -13,6 +13,7 @@
 //!    from the "Range" (Runtime).
 //! 3. **mTLS Everywhere**: Mandatory mutual TLS for all control-plane traffic.
 
+#![forbid(unsafe_code)]
 pub mod config;
 pub mod error;
 pub mod playbook;

@@ -15,6 +15,7 @@
 //!    oversized binary artifacts that violate the ecosystem's "Absolute Zero" 
 //!    performance mandate.
 
+#![forbid(unsafe_code)]
 use std::path::{Path, PathBuf};
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
