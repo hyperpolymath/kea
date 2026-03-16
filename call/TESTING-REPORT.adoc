@@ -176,15 +176,15 @@ grep -rE "permissions:\s*write-all" .github/workflows/
 [cols="1,1", options="header"]
 |===
 | Placeholder | Replacement
-| `{{PROJECT_NAME}}` | Kea-Call
-| `{{OWNER}}` | hyperpolymath
-| `{{REPO}}` | kea-call
-| `{{FORGE}}` | github.com
+| `Kea` | Kea-Call
+| `hyperpolymath` | hyperpolymath
+| `kea` | kea-call
+| `github.com` | github.com
 | `{{CONDUCT_EMAIL}}` | conduct@hyperpolymath.com
 | `{{CONDUCT_TEAM}}` | Conduct Committee
 | `{{RESPONSE_TIME}}` | 48 hours
-| `{{CURRENT_YEAR}}` | 2025
-| `{{MAIN_BRANCH}}` | main
+| `2026` | 2025
+| `main` | main
 |===
 
 === Issue 2: CodeQL Language Mismatch
