@@ -117,14 +117,14 @@
     (fix
       (file "CODE_OF_CONDUCT.md")
       (changes
-        (replacement "{{PROJECT_NAME}}" "Kea-Call")
+        (replacement "call" "Kea-Call")
         (replacement "hyperpolymath" "hyperpolymath")
         (replacement "kea" "kea-call")
         (replacement "github.com" "github.com")
         (replacement "{{CONDUCT_EMAIL}}" "conduct@hyperpolymath.com")
         (replacement "{{CONDUCT_TEAM}}" "Conduct Committee")
         (replacement "{{RESPONSE_TIME}}" "48 hours")
-        (replacement "{{CURRENT_YEAR}}" "2025")
+        (replacement "2026" "2025")
         (removed "template-instructions-block")))
 
     (fix

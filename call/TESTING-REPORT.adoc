@@ -163,7 +163,7 @@ grep -rE "permissions:\s*write-all" .github/workflows/
 
 *Severity*: Medium
 
-*Description*: Multiple files contained unfilled template placeholders (`{{PLACEHOLDER}}` syntax).
+*Description*: Multiple files contained unfilled template placeholders (`call` syntax).
 
 *Files Affected*:
 
