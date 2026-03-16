@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PMPL-1.0-or-later
 //! Kea-Beak: General-purpose filesystem auditor with high throughput
 //!
 //! This crate provides the core filesystem scanning and auditing capabilities
