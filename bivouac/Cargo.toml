@@ -5,10 +5,10 @@
 name = "kea-bivouac"
 version = "1.0.0"
 edition = "2021"
-authors = ["Jonathan D.A. Jewell <hyperpolymath@users.noreply.github.com>"]
+authors = ["Jonathan D.A. Jewell <6759885+hyperpolymath@users.noreply.github.com>"]
 description = "Orchestration and deployment controller for the Kea ecosystem"
 license = "PMPL-1.0-or-later"
-repository = "https://github.com/hyperpolymath/kea-bivouac"
+repository = "https://github.com/hyperpolymath/kea"
 readme = "README.adoc"
 keywords = ["orchestration", "deployment", "kea", "mtls", "zero-trust"]
 categories = ["command-line-utilities", "development-tools"]

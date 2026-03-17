@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2026 Jonathan D.A. Jewell
 
-= Kea-Tools: Unified Kea Ecosystem Toolkit
+= Kea: Unified Infrastructure Orchestration Toolkit
 
 image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+image:https://img.shields.io/badge/RSR-2026-brightgreen.svg[RSR 2026]
 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-v1.0.0, February 2026
-:description: Consolidated monorepo for all Kea ecosystem tools.
+v1.0.0, March 2026
+:description: Monorepo for the Kea ecosystem — intelligent infrastructure orchestration, investigation, signalling, and WebAssembly interface tooling.
 :toc: auto
 :toclevels: 3
 :icons: font
@@ -14,9 +15,9 @@ v1.0.0, February 2026
 
 == Overview
 
-Kea-Tools is the unified monorepo consolidating the four core components of the Kea ecosystem into a single development and deployment surface.
+Kea is the unified monorepo for four core infrastructure tools, each named after a behavioural trait of the Kea parrot: strategic roosting, vocal coordination, investigative dexterity, and adaptive intelligence.
 
-The *Kea ecosystem* provides intelligent infrastructure orchestration, investigation, signalling, and WebAssembly interface tooling. Each component corresponds to a behavioural trait of the Kea parrot: strategic roosting, vocal coordination, investigative dexterity, and adaptive intelligence.
+The system provides a closed-loop audit-and-remediation pipeline: sensors probe infrastructure, signals are routed via zero-copy protocols, and the orchestrator executes playbooks to fix or alert.
 
 == Components
 
@@ -34,7 +35,7 @@ The *Kea ecosystem* provides intelligent infrastructure orchestration, investiga
 
 |`mandible/`
 |**Kea-Mandible** -- The Investigative Mandible
-|High-dexterity sensor suite (Kea-Beak, WP-Praxis, Slop-Gate). Probes filesystems, network configurations, and WordPress cores to identify instability and bloat.
+|High-dexterity sensor suite. Contains four crates: Kea-Beak (filesystem/network auditor at 10k files/sec), Kea-Mandible CLI, WP-Praxis (WordPress core auditor), and Slop-Gate (bloat detection filter).
 
 |`wit/`
 |**Kea-Wit** -- WebAssembly Interface Types
@@ -52,6 +53,8 @@ The *Kea ecosystem* provides intelligent infrastructure orchestration, investiga
        +----------> (Orchestrator) <---------+
 ....
 
+See link:TOPOLOGY.md[TOPOLOGY.md] for a detailed architecture map, completion dashboard, and MVP roadmap.
+
 == Quick Start
 
 [source,bash]
@@ -62,25 +65,44 @@ just build
 # Run all tests
 just test
 
+# Full check suite (format, lint, test)
+just check
+
 # Deep audit a target path (via Mandible)
 just mandible-pry /var/www/html
 
+# WordPress audit (via Mandible)
+just mandible-wordpress /var/www/html
+
 # Execute a failover playbook (via Bivouac)
 just bivouac-playbook integrity-violation
+
+# Security scan (pre-commit)
+just panic
 ----
 
 == Repository Structure
 
 [source]
 ----
-kea-tools/
-├── bivouac/       # Kea-Bivouac (orchestration and deployment)
-├── call/          # Kea-Call (signalling protocol definitions)
-├── mandible/      # Kea-Mandible (investigative sensors)
-├── wit/           # Kea-Wit (WebAssembly interface types)
-├── justfile       # Top-level build recipes
-├── LICENSE        # PMPL-1.0-or-later
-└── README.adoc    # This file
+kea/
+├── bivouac/                   # Kea-Bivouac (orchestration and deployment)
+│   ├── src/                   # Rust application source
+│   ├── tests/                 # Integration tests
+│   ├── playbooks/             # TOML playbook definitions
+│   └── fuzz/                  # ClusterFuzzLite fuzz targets
+├── call/                      # Kea-Call (signalling protocol definitions)
+├── mandible/                  # Kea-Mandible (investigative sensors)
+│   └── crates/                # Workspace: kea-beak, kea-mandible, wp-praxis, slop-gate
+├── wit/                       # Kea-Wit (WebAssembly interface types)
+├── .github/workflows/         # 17 RSR-standard CI/CD workflows
+├── .machine_readable/6a2/     # Machine-readable state (A2ML format)
+├── .well-known/               # Security and AI discovery files
+├── justfile                   # Top-level build recipes
+├── TOPOLOGY.md                # Architecture map and completion dashboard
+├── LICENSE                    # MPL-2.0 (tooling compat; see NOTICE)
+├── LICENSES/                  # PMPL-1.0-or-later.txt + MPL-2.0.txt
+└── NOTICE                     # Licensing explanation
 ----
 
 == Technology Stack
@@ -95,32 +117,56 @@ Per the Hyperpolymath language policy:
 |Rust
 
 |Serialisation
-|Cap'n Proto
+|Cap'n Proto (zero-copy)
 
-|Scripting / Glue
-|ReScript, Bash
+|Interfaces
+|WIT (WebAssembly Component Model)
 
-|Runtime
-|Deno (no Node.js/npm)
+|Runtime (where JS needed)
+|Deno
 
 |Configuration
-|Nickel, Guile Scheme
+|TOML, Nickel
 
-|WebAssembly
-|WIT (Component Model)
+|ABI (planned)
+|Idris2
+
+|FFI (planned)
+|Zig
+
+|API (planned)
+|V-lang
 |===
+
+== Roadmap
+
+=== Phase 1: MVP (current)
+
+* Slop-Gate heuristic tuning (60% -> 90%)
+* WP-Praxis edge case coverage (multisite, custom themes)
+* WIT specification formalisation
+* End-to-end integration test: Mandible -> Call -> Bivouac
+
+=== Phase 2: ABI/FFI/API
+
+* Idris2 ABI definitions for cross-component type safety
+* Zig FFI layer for C-compatible sensor plugins
+* V-lang API connectors for external integrations
+
+=== Phase 3: Distribution
+
+* Chainguard-based OCI container image
+* BoJ-server integration (Kea sensors as MCP cartridge data sources)
+* Crate publication to crates.io
 
 == License
 
-Licensed under link:LICENSE[PMPL-1.0-or-later] (Palimpsest License).
+Licensed under link:LICENSES/PMPL-1.0-or-later.txt[PMPL-1.0-or-later] (Palimpsest License).
+
+The root `LICENSE` file contains MPL-2.0 for tooling compatibility. See link:NOTICE[NOTICE] for details.
 
 Copyright (C) 2024-2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 
 == Author
 
 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-
-
-== Architecture
-
-See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.

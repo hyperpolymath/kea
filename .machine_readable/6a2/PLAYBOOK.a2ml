@@ -1,23 +1,35 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # PLAYBOOK.a2ml — Operational playbook
 # Runbooks, incident response, deployment procedures.
+# Last updated: 2026-03-16
 
 [metadata]
-version = "0.1.0"
+version = "1.0.0"
 last-updated = "2026-03-16"
 
 [deployment]
-# method = "gitops"
-# target = "container"
+method = "container"
+base-image = "cgr.dev/chainguard/rust"
+build-tool = "just build-release"
+container-file = "Containerfile"
 
 [incident-response]
-# 1. Check .machine_readable/STATE.a2ml for current status
-# 2. Review recent commits and CI results
-# 3. Run just validate to check compliance
+step-1 = "Check .machine_readable/6a2/STATE.a2ml for current status"
+step-2 = "Review recent commits and CI results"
+step-3 = "Run `just check` to validate compliance"
+step-4 = "Run `panic-attack assail` to scan for security issues"
+step-5 = "Check .hypatia/ reports for neurosymbolic findings"
 
 [release-process]
-# 1. Update version in STATE.a2ml, META.a2ml
-# 2. Run just quality (format, lint, test)
-# 3. Tag and push
+step-1 = "Update version in STATE.a2ml, META.a2ml, Cargo.toml files"
+step-2 = "Run `just check` (format, lint, test)"
+step-3 = "Run `panic-attack assail` (security scan)"
+step-4 = "Tag with v{version} and push"
+step-5 = "release.yml workflow auto-builds changelog and GitHub Release"
+
+[maintenance]
+schedule = "Weekly dependency updates via Dependabot"
+security-scan = "Every push via hypatia-scan, secret-scanner, codeql"
+quality-gate = "Every PR via quality.yml, scorecard-enforcer"

@@ -1,14 +1,43 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # NEUROSYM.a2ml — Neurosymbolic integration metadata
 # Configuration for Hypatia scanning and symbolic reasoning.
+# Last updated: 2026-03-16
 
 [metadata]
-version = "0.1.0"
+version = "1.0.0"
 last-updated = "2026-03-16"
 
 [hypatia-config]
 scan-enabled = true
 scan-depth = "standard"
 report-format = "logtalk"
+report-path = ".hypatia/"
+
+[scan-targets]
+# Paths to include in neurosymbolic security scanning
+include = [
+    "bivouac/src/",
+    "mandible/crates/",
+    ".github/workflows/",
+    "justfile",
+]
+
+[dangerous-patterns]
+# Patterns that must never appear in source code
+banned = [
+    "believe_me",
+    "assert_total",
+    "sorry",
+    "Admitted",
+    "unsafeCoerce",
+    "Obj.magic",
+    "unsafe { }",
+]
+
+[security-checks]
+spdx-headers = true
+secret-detection = true
+dependency-audit = true
+workflow-sha-pins = true

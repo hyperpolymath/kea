@@ -1,10 +1,38 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# ECOSYSTEM.a2ml — Ecosystem position
-# Converted from ECOSYSTEM.scm on 2026-03-15
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# ECOSYSTEM.a2ml — Ecosystem position and relationships
+# Last updated: 2026-03-16
 
 [metadata]
 project = "kea"
 ecosystem = "hyperpolymath"
+version = "1.0.0"
 
 [position]
-type = "component"
+type = "infrastructure-tooling"
+purpose = "Intelligent infrastructure orchestration, auditing, and deployment"
+domain = "DevOps, security auditing, WordPress management, WASM tooling"
+
+[related-projects]
+# Direct dependencies / integrations
+proven = { relationship = "consumer", purpose = "Formally verified alternatives for critical code paths" }
+proven-servers = { relationship = "consumer", purpose = "ABI-FFI layers for type-safe interop" }
+boj-server = { relationship = "sibling", purpose = "MCP server orchestration — Kea sensors feed BoJ cartridges" }
+panic-attacker = { relationship = "tooling", purpose = "Pre-commit security scanning" }
+hypatia = { relationship = "tooling", purpose = "Neurosymbolic CI/CD security scanning" }
+
+# Potential integrations
+developer-ecosystem = { relationship = "upstream", purpose = "V-lang API connectors for Kea" }
+ambientops = { relationship = "sibling", purpose = "Personal sysadmin tools — Kea audits what AmbientOps manages" }
+laniakea = { relationship = "sibling", purpose = "Shared infrastructure patterns" }
+
+[technology-stack]
+primary-language = "Rust"
+serialisation = "Cap'n Proto"
+interfaces = "WIT (WebAssembly Component Model)"
+runtime = "Deno (where JS needed)"
+configuration = "TOML, Nickel"
+abi = "Idris2 (planned)"
+ffi = "Zig (planned)"
+api = "V-lang (planned)"

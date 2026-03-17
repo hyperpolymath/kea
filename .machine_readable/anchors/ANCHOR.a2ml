@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# ANCHOR.a2ml — Canonical authority declaration
+# Last updated: 2026-03-16
+
+[anchor]
+canonical-forge = "github.com"
+canonical-owner = "hyperpolymath"
+canonical-repo = "kea"
+canonical-url = "https://github.com/hyperpolymath/kea"
+
+[mirrors]
+gitlab = "https://gitlab.com/hyperpolymath/kea"
+bitbucket = "https://bitbucket.org/hyperpolymath/kea"
+
+[authority]
+maintainer = "Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>"
+git-email = "6759885+hyperpolymath@users.noreply.github.com"

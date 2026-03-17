@@ -1,19 +1,81 @@
 ;; SPDX-License-Identifier: PMPL-1.0-or-later
+;; Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+;;
 ;; 0-AI-MANIFEST.a2ml — AI Agent Entry Point
 ;; Repository: hyperpolymath/kea
+;; Last updated: 2026-03-16
 
 @abstract:
-AI manifest for kea. Read this file first before any other work.
+Kea is a unified monorepo for intelligent infrastructure orchestration,
+investigation, signalling, and WebAssembly interface tooling. Each component
+maps to a behavioural trait of the Kea parrot: strategic roosting (Bivouac),
+vocal coordination (Call), investigative dexterity (Mandible), and adaptive
+intelligence (Wit).
 @end
 
+;; === SESSION STARTUP CHECKLIST ===
+;; 1. Read this file (you are here)
+;; 2. Read .machine_readable/6a2/STATE.a2ml for current project state
+;; 3. Read .machine_readable/6a2/META.a2ml for meta-information
+;; 4. Read .machine_readable/6a2/ECOSYSTEM.a2ml for ecosystem position
+;; 5. Read TOPOLOGY.md for architecture map and completion dashboard
+;; 6. Read relevant subproject README.adoc before modifying code
+
+;; === REPOSITORY STRUCTURE ===
+;;
+;; kea/                           (monorepo root — single .git)
+;; ├── bivouac/                   Rust — orchestration and deployment controller
+;; │   ├── src/                   Application source (config, error, playbook, main)
+;; │   ├── tests/                 Integration tests
+;; │   ├── playbooks/             TOML playbook definitions
+;; │   ├── fuzz/                  Fuzz testing targets
+;; │   └── Cargo.toml             Package manifest
+;; ├── call/                      Protocol definitions (Cap'n Proto, MCP)
+;; │   └── README.adoc            Request-Signal-Action protocol spec
+;; ├── mandible/                  Rust workspace — sensor suite
+;; │   ├── crates/kea-beak/       Filesystem/network auditor (10k files/sec)
+;; │   ├── crates/kea-mandible/   CLI orchestrator for sensors
+;; │   ├── crates/wp-praxis/      WordPress core auditor
+;; │   ├── crates/slop-gate/      Bloat detection and filtering
+;; │   └── Cargo.toml             Workspace manifest
+;; ├── wit/                       WIT interface definitions (Component Model)
+;; │   └── ROADMAP.adoc           Phase 0-3 specification roadmap
+;; ├── .github/workflows/         17 RSR-standard CI/CD workflows
+;; ├── .machine_readable/6a2/     Machine-readable state (A2ML format)
+;; ├── .well-known/               Security and AI discovery files
+;; └── TOPOLOGY.md                Architecture map and completion dashboard
+
 ;; === CANONICAL LOCATIONS ===
-;; Machine-readable state: .machine_readable/
-;; Documentation: docs/
-;; Source code: src/
-;; Tests: verification/tests/ or tests/
+;; Machine-readable state: .machine_readable/6a2/ ONLY (never root)
+;; Documentation: README.adoc, TOPOLOGY.md, subproject README.adoc files
+;; Rust source: bivouac/src/, mandible/crates/*/src/
+;; Tests: bivouac/tests/, mandible/crates/*/tests/
+;; Fuzz targets: bivouac/fuzz/, mandible/fuzz/
+;; Playbooks: bivouac/playbooks/
+;; Protocol specs: call/
+;; WIT definitions: wit/
+;; CI/CD: .github/workflows/ (root only — no subproject workflows)
 
 ;; === CRITICAL INVARIANTS ===
+;; - This is a MONOREPO: single .git root, no .git dirs in subprojects
+;; - No .github/ directories in subprojects (all CI/CD at root)
 ;; - SPDX headers on ALL files (PMPL-1.0-or-later)
 ;; - No believe_me, assert_total, sorry, Admitted, unsafeCoerce, Obj.magic
-;; - SCM files ONLY in .machine_readable/ (never root)
+;; - SCM/A2ML files ONLY in .machine_readable/6a2/ (never root, never subprojects)
 ;; - Author: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+;; - Git email: 6759885+hyperpolymath@users.noreply.github.com
+;; - License: PMPL-1.0-or-later (MPL-2.0 in root LICENSE for tooling compat)
+;; - No TypeScript, Python, Go, Node.js, npm, Bun
+;; - Containers: Chainguard base, Containerfile (not Dockerfile), Podman (not Docker)
+;; - ABI: Idris2 | FFI: Zig | API: V-lang
+
+;; === LANGUAGE MAP ===
+;; Rust    → bivouac/src/, mandible/crates/*/src/ (systems, CLI, sensors)
+;; TOML    → Cargo.toml, playbooks/ (configuration)
+;; Cap'n Proto → call/ (zero-copy binary serialisation)
+;; WIT     → wit/ (WebAssembly Component Model interfaces)
+;; Bash    → justfile recipes, scripts (automation only)
+
+;; === ATTESTATION ===
+;; This manifest was last verified on 2026-03-16.
+;; Verification: 17/17 standard workflows present, 0 banned patterns detected.

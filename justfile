@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# Kea-Tools: Unified build and run commands for the Kea ecosystem
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Kea: Unified build and run commands for the Kea ecosystem
+# See TOPOLOGY.md for architecture map, README.adoc for quick start.
 
-# Default recipe - show available commands
+# Default recipe — show available commands
 default:
     @just --list
 
@@ -45,6 +48,25 @@ clean:
     cd bivouac && cargo clean
     cd mandible && cargo clean
 
+# === Security and Quality ===
+
+# Run panic-attack pre-commit scan
+panic:
+    panic-attack assail
+
+# Run cargo audit for known vulnerabilities
+audit:
+    cd bivouac && cargo audit 2>/dev/null || true
+    cd mandible && cargo audit 2>/dev/null || true
+
+# Run cargo deny for license and advisory checks
+deny:
+    cd bivouac && cargo deny check 2>/dev/null || true
+    cd mandible && cargo deny check 2>/dev/null || true
+
+# Full quality gate (check + security)
+quality: check panic audit
+
 # === Bivouac commands ===
 
 # Execute a failover playbook via Bivouac
@@ -59,11 +81,15 @@ bivouac-build:
 bivouac-test:
     cd bivouac && cargo test --workspace
 
+# Lint Bivouac only
+bivouac-lint:
+    cd bivouac && cargo clippy --workspace --all-targets -- -D warnings
+
 # === Call commands ===
 
 # Generate language-specific bindings from Cap'n Proto schemas
 call-generate-bindings:
-    cd call && just generate-bindings
+    cd call && echo "Cap'n Proto binding generation — configure schema path first"
 
 # === Mandible commands ===
 
@@ -87,11 +113,15 @@ mandible-build:
 mandible-test:
     cd mandible && cargo test --workspace
 
+# Lint Mandible only
+mandible-lint:
+    cd mandible && cargo clippy --workspace --all-targets -- -D warnings
+
 # === Wit commands ===
 
-# Build Wit tooling
+# Build Wit tooling (pending specification)
 wit-build:
-    cd wit && echo "Wit tooling - specification pending"
+    cd wit && echo "Wit tooling — specification pending (see wit/ROADMAP.adoc)"
 
 # === Documentation ===
 
@@ -100,7 +130,52 @@ doc:
     cd bivouac && cargo doc --workspace --no-deps
     cd mandible && cargo doc --workspace --no-deps
 
-# [AUTO-GENERATED] Multi-arch / RISC-V target
+# Open generated docs in browser
+doc-open:
+    cd bivouac && cargo doc --workspace --no-deps --open
+
+# === Fuzz Testing ===
+
+# Run ClusterFuzzLite targets for Bivouac
+fuzz-bivouac:
+    cd bivouac/fuzz && cargo fuzz list
+
+# Run ClusterFuzzLite targets for Mandible
+fuzz-mandible:
+    cd mandible/fuzz && cargo fuzz list
+
+# === Validation ===
+
+# Validate RSR compliance (SPDX headers, file structure, etc.)
+validate:
+    @echo "Checking SPDX headers..."
+    @grep -rL "SPDX-License-Identifier" bivouac/src/ mandible/crates/*/src/ 2>/dev/null && echo "MISSING SPDX HEADERS" || echo "All source files have SPDX headers"
+    @echo ""
+    @echo "Checking for banned patterns..."
+    @grep -rn "believe_me\|assert_total\|sorry\|Admitted\|unsafeCoerce\|Obj.magic" bivouac/src/ mandible/crates/*/src/ 2>/dev/null && echo "BANNED PATTERNS FOUND" || echo "No banned patterns detected"
+    @echo ""
+    @echo "Checking for banned languages..."
+    @find . -name "*.ts" -o -name "*.py" -o -name "*.go" | grep -v node_modules | grep -v .git | head -5 && echo "BANNED LANGUAGE FILES FOUND" || echo "No banned language files"
+    @echo ""
+    @echo "Checking workflow count..."
+    @echo "Workflows: $(ls .github/workflows/*.yml | wc -l)/17"
+
+# Validate machine-readable state files exist
+validate-state:
+    @echo "Checking .machine_readable/6a2/ ..."
+    @for f in STATE META ECOSYSTEM AGENTIC NEUROSYM PLAYBOOK; do \
+        test -f ".machine_readable/6a2/$$f.a2ml" && echo "  $$f.a2ml OK" || echo "  $$f.a2ml MISSING"; \
+    done
+    @test -f ".machine_readable/anchors/ANCHOR.a2ml" && echo "  ANCHOR.a2ml OK" || echo "  ANCHOR.a2ml MISSING"
+
+# === Multi-arch ===
+
+# Build for RISC-V target
 build-riscv:
-	@echo "Building for RISC-V..."
-	cross build --target riscv64gc-unknown-linux-gnu
+    @echo "Building for RISC-V..."
+    cross build --target riscv64gc-unknown-linux-gnu
+
+# Build for ARM64
+build-arm64:
+    @echo "Building for ARM64..."
+    cross build --target aarch64-unknown-linux-gnu

@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
 <!-- TOPOLOGY.md — Project architecture map and completion dashboard -->
-<!-- Last updated: 2026-02-19 -->
+<!-- Last updated: 2026-03-16 -->
 
-# Kea-Tools — Project Topology
+# Kea — Project Topology
 
 ## System Architecture
 
@@ -16,6 +16,7 @@
                         ┌─────────────────────────────────────────┐
                         │           KEA-BIVOUAC (CORE)            │
                         │    (Command Authority, Orchestrator)    │
+                        │    mTLS zero-trust, playbook executor   │
                         └──────────┬───────────────────┬──────────┘
                                    │                   │
                                    ▼                   ▼
@@ -23,6 +24,7 @@
                         │ KEA-CALL (SIGNALLING) │  │ KEA-WIT (INTERFACE)            │
                         │ - Cap'n Proto Defs    │  │ - WIT Definitions              │
                         │ - MCP Communication   │  │ - Component Model Tooling      │
+                        │ - Request-Signal-Act  │  │ - WASM Validation              │
                         └──────────┬────────────┘  └──────────┬─────────────────────┘
                                    │                          │
                                    └────────────┬─────────────┘
@@ -31,7 +33,8 @@
                         │           KEA-MANDIBLE (SENSORS)        │
                         │  ┌───────────┐  ┌───────────┐  ┌───────┐│
                         │  │ Kea-Beak  │  │ WP-Praxis │  │ Slop  ││
-                        │  │ (FS/Net)  │  │ (WordPress)│  │ Gate  ││
+                        │  │ (FS/Net)  │  │(WordPress) │  │ Gate  ││
+                        │  │ 10k f/sec │  │ Core Audit │  │ Bloat ││
                         │  └───────────┘  └───────────┘  └───────┘│
                         └───────────────────┬─────────────────────┘
                                             │
@@ -42,9 +45,16 @@
                         └─────────────────────────────────────────┘
 
                         ┌─────────────────────────────────────────┐
+                        │          ABI / FFI / API LAYER          │
+                        │  Idris2 (ABI)  Zig (FFI)  V-lang (API) │
+                        │         (Planned — Phase 2)             │
+                        └─────────────────────────────────────────┘
+
+                        ┌─────────────────────────────────────────┐
                         │          REPO INFRASTRUCTURE            │
-                        │  Justfile / Cargo   .machine_readable/  │
-                        │  Cap'n Proto        Deno Runtime        │
+                        │  17 CI/CD Workflows    .machine_readable│
+                        │  Justfile Automation   Chainguard Images│
+                        │  panic-attack Scans    Hypatia Security │
                         └─────────────────────────────────────────┘
 ```
 
@@ -54,33 +64,77 @@
 COMPONENT                          STATUS              NOTES
 ─────────────────────────────────  ──────────────────  ─────────────────────────────────
 CORE ECOSYSTEM
-  Kea-Bivouac (Orchestrator)        ██████████ 100%    Command authority stable
+  Kea-Bivouac (Orchestrator)        ██████████ 100%    Command authority stable, mTLS ready
   Kea-Call (Signalling)             ██████████ 100%    Zero-copy Cap'n Proto active
   Kea-Mandible (Sensors)            ████████░░  80%    Investigation logic refining
-  Kea-Wit (WASM Interfaces)         ██████████ 100%    Component model stable
+  Kea-Wit (WASM Interfaces)         ███████░░░  70%    Spec in progress, ROADMAP.adoc
 
-TOOLS & PLUGINS
-  Kea-Beak (Network Probe)          ██████████ 100%    Metadata probing verified
-  WP-Praxis Integration             ████████░░  80%    WordPress audit refining
-  Slop-Gate (Bloat Detection)       ██████░░░░  60%    Initial heuristics active
+MANDIBLE CRATES
+  Kea-Beak (FS/Network Probe)      ██████████ 100%    10k files/sec, SHA256+BLAKE3
+  Kea-Mandible CLI                  ████████░░  80%    Functional, needs output polish
+  WP-Praxis (WordPress Audit)      ████████░░  80%    Core audit works, edge cases remain
+  Slop-Gate (Bloat Detection)       ██████░░░░  60%    Initial heuristics, needs tuning
 
 REPO INFRASTRUCTURE
-  Justfile Automation               ██████████ 100%    Standard build/test tasks
-  .machine_readable/                ██████████ 100%    STATE tracking active
-  Monorepo Management               ██████████ 100%    Inter-component dependencies stable
+  CI/CD Workflows (17/17)           ██████████ 100%    Full RSR standard
+  .machine_readable/ State          ██████████ 100%    A2ML format, 6 files
+  Justfile Automation               ██████████ 100%    Build/test/lint/audit recipes
+  .well-known/ Discovery            ██████████ 100%    security.txt, ai.txt, humans.txt
+  .github/ Community Files          ██████████ 100%    CODEOWNERS, templates, dependabot
+
+ABI / FFI / API (PLANNED)
+  Idris2 ABI Definitions            ░░░░░░░░░░   0%    Not started — Phase 2
+  Zig FFI Implementation            ░░░░░░░░░░   0%    Not started — Phase 2
+  V-lang API Connectors             ░░░░░░░░░░   0%    Not started — Phase 2
 
 ─────────────────────────────────────────────────────────────────────────────
-OVERALL:                            █████████░  ~90%   v1.0.0 Production Ready
+OVERALL:                            █████████░  ~85%   MVP target: Slop-Gate + WIT + E2E
 ```
 
-## Key Dependencies
+## Data Flow
 
 ```
-Kea-Wit (Logic) ──────► Kea-Call ──────► Kea-Bivouac ──────► Deployment
-     │                    ▲                 │                   │
-     ▼                    │                 ▼                   ▼
-Mandible (Sensor) ────────┘           Target Infra ◄──────── Feedback
+Kea-Mandible                  Kea-Call                    Kea-Bivouac
+(Sensor Suite)                (Protocol)                  (Orchestrator)
+    │                             │                           │
+    │  1. Probe target FS/net     │                           │
+    │  2. Collect findings        │                           │
+    │───── Cap'n Proto ──────────►│                           │
+    │                             │  3. Route signal          │
+    │                             │───── MCP/Action ─────────►│
+    │                             │                           │  4. Execute playbook
+    │                             │                           │  5. Deploy fix/alert
+    │◄────────────── Feedback ────┤◄──────────────────────────│
+    │  6. Re-probe to verify      │                           │
 ```
+
+## Subproject Index
+
+| Component | Directory | Language | Status | MVP Gap |
+|-----------|-----------|----------|--------|---------|
+| Kea-Bivouac | `bivouac/` | Rust | Stable | None |
+| Kea-Call | `call/` | Cap'n Proto/MCP | Stable | None |
+| Kea-Beak | `mandible/crates/kea-beak/` | Rust | Stable | None |
+| Kea-Mandible CLI | `mandible/crates/kea-mandible/` | Rust | 80% | Output formats, help text |
+| WP-Praxis | `mandible/crates/wp-praxis/` | Rust | 80% | Multisite, custom themes |
+| Slop-Gate | `mandible/crates/slop-gate/` | Rust | 60% | Heuristic tuning, thresholds |
+| Kea-Wit | `wit/` | WIT | 70% | Formal spec (see ROADMAP.adoc) |
+
+## Shortest Route to MVP
+
+1. **Slop-Gate** (60% → 90%): Tune heuristics, add configurable thresholds, test against real hosting dirs
+2. **WP-Praxis** (80% → 95%): WordPress multisite support, custom theme detection
+3. **Kea-Wit** (70% → 90%): Formalise WIT interfaces for Mandible ↔ Bivouac pipeline
+4. **Kea-Mandible CLI** (80% → 95%): JSON/TOML output formats, improved help text
+5. **E2E Integration**: Full Mandible → Call → Bivouac pipeline test
+6. **Container Build**: Chainguard-based OCI image for deployment
+
+## Phase 2 (Post-MVP)
+
+- Add Idris2 ABI definitions in `src/abi/` for cross-component type safety
+- Add Zig FFI layer in `ffi/zig/` for C-compatible sensor plugins
+- Publish V-lang API connectors from `developer-ecosystem/v-ecosystem/`
+- BoJ-server integration: Kea sensors as MCP cartridge data sources
 
 ## Update Protocol
 

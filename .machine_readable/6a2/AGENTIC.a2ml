@@ -1,11 +1,12 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # AGENTIC.a2ml — AI agent constraints and capabilities
 # Defines what AI agents can and cannot do in this repository.
+# Last updated: 2026-03-16
 
 [metadata]
-version = "0.1.0"
+version = "1.0.0"
 last-updated = "2026-03-16"
 
 [agent-permissions]
@@ -14,11 +15,26 @@ can-edit-tests = true
 can-edit-docs = true
 can-edit-config = true
 can-create-files = true
+can-edit-workflows = true
+can-edit-justfile = true
+can-edit-playbooks = true
 
 [agent-constraints]
 # What AI agents must NOT do:
-# - Never use banned language patterns (believe_me, unsafeCoerce, etc.)
+# - Never use banned language patterns (believe_me, unsafeCoerce, assert_total, sorry, Admitted, Obj.magic)
 # - Never commit secrets or credentials
-# - Never use banned languages (TypeScript, Python, Go, etc.)
-# - Never place state files in repository root (must be in .machine_readable/)
+# - Never use banned languages (TypeScript, Python, Go, Node.js, npm, Bun)
+# - Never place state files in repository root (must be in .machine_readable/6a2/)
 # - Never use AGPL license (use PMPL-1.0-or-later)
+# - Never create .github/ directories in subprojects (all CI/CD at root)
+# - Never create .git directories in subprojects (monorepo)
+# - Never use Docker/Dockerfile (use Podman/Containerfile)
+# - ABI must use Idris2, FFI must use Zig, API must use V-lang
+
+[agent-workflow]
+# Before modifying code:
+# 1. Read 0-AI-MANIFEST.a2ml
+# 2. Read STATE.a2ml for current status
+# 3. Read the relevant subproject README.adoc
+# 4. Run `just check` after changes
+# 5. Run `panic-attack assail` before committing

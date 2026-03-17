@@ -1,14 +1,52 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
 # STATE.a2ml — Project state checkpoint
-# Converted from STATE.scm on 2026-03-15
+# Last updated: 2026-03-16
 
 [metadata]
 project = "kea"
-version = "0.1.0"
-last-updated = "2026-03-15"
+version = "1.0.0"
+last-updated = "2026-03-16"
 status = "active"
+phase = "RSR compliance hardening"
 
 [project-context]
-name = "kea"
-completion-percentage = 0
-phase = "In development"
+name = "Kea — Unified Infrastructure Orchestration Toolkit"
+description = "Monorepo for intelligent infrastructure orchestration, investigation, signalling, and WASM interfaces"
+completion-percentage = 85
+target-version = "1.0.0"
+
+[components]
+# Component completion tracking (percentage)
+bivouac = 100      # Command authority / orchestrator — stable
+call = 100         # Cap'n Proto / MCP signalling — stable
+mandible = 80      # Sensor suite — WP-Praxis and Slop-Gate refining
+wit = 70           # WIT interface definitions — spec in progress
+
+[components.mandible-crates]
+kea-beak = 100     # Filesystem/network auditor — verified
+kea-mandible = 80  # CLI orchestrator — functional, needs polish
+wp-praxis = 80     # WordPress auditor — core audit working, edge cases remain
+slop-gate = 60     # Bloat detection — initial heuristics, needs tuning
+
+[route-to-mvp]
+# Ordered by priority — shortest path to functioning system
+step-1 = "Slop-Gate heuristic tuning and threshold calibration"
+step-2 = "WP-Praxis edge case coverage (multisite, custom themes)"
+step-3 = "WIT specification formalisation (Phase 1 from ROADMAP)"
+step-4 = "Kea-Mandible CLI polish (help text, output formats)"
+step-5 = "End-to-end integration test: Mandible → Call → Bivouac pipeline"
+step-6 = "Container image build and publish (Chainguard base)"
+
+[blockers-and-issues]
+# No hard blockers — all work is incremental refinement
+blocker-1 = "WIT spec depends on Component Model stabilisation (upstream)"
+issue-1 = "Slop-Gate thresholds need real-world calibration data"
+
+[critical-next-actions]
+action-1 = "Complete Slop-Gate heuristic engine (60% → 90%)"
+action-2 = "Formalise WIT interfaces for Mandible ↔ Bivouac communication"
+action-3 = "Add ABI layer (Idris2) for cross-component type safety"
+action-4 = "Add FFI layer (Zig) for C-compatible sensor plugins"
+action-5 = "Publish V-lang API connectors for external integrations"

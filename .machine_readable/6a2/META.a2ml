@@ -1,9 +1,42 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
+# Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
 # META.a2ml — Project meta-information
-# Converted from META.scm on 2026-03-15
+# Last updated: 2026-03-16
 
 [metadata]
 project = "kea"
+version = "1.0.0"
 author = "Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>"
+git-email = "6759885+hyperpolymath@users.noreply.github.com"
 license = "PMPL-1.0-or-later"
+license-fallback = "MPL-2.0"
 standard = "RSR 2026"
+repository = "https://github.com/hyperpolymath/kea"
+
+[architecture-decisions]
+# ADR-001: Monorepo structure over polyrepo
+adr-001-status = "accepted"
+adr-001-summary = "All Kea components in single repo for atomic cross-component changes"
+
+# ADR-002: Rust for all systems code
+adr-002-status = "accepted"
+adr-002-summary = "Rust for CLI, orchestration, and sensor code — performance + safety"
+
+# ADR-003: Cap'n Proto over Protocol Buffers
+adr-003-status = "accepted"
+adr-003-summary = "Zero-copy serialisation for sensor → orchestrator communication"
+
+# ADR-004: Kea parrot metaphor for component naming
+adr-004-status = "accepted"
+adr-004-summary = "Components named after Kea behaviours: bivouac (roosting), call (vocalisation), mandible (investigation), wit (intelligence)"
+
+# ADR-005: ABI/FFI/API triple architecture
+adr-005-status = "proposed"
+adr-005-summary = "Idris2 ABI, Zig FFI, V-lang API for cross-language interop"
+
+[development-practices]
+ci-cd = "GitHub Actions (17 RSR-standard workflows)"
+testing = "cargo test + fuzz (ClusterFuzzLite)"
+security = "Hypatia scan, TruffleHog, OpenSSF Scorecard"
+release = "Tag-triggered with git-cliff changelog and SLSA provenance"
