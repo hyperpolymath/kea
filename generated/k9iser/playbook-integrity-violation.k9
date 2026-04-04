@@ -1,0 +1,19 @@
+# Auto-generated K9 contract for playbook-integrity-violation
+# Safety tier: yard
+
+[must]
+name : string { == 'integrity-violation' }
+continue_on_error : string { == false }
+timeout_secs : string { > 0, <= 3600 }
+trigger.type : string { == 'integrity-violation' }
+trigger.severity : string { == 'critical' }
+
+[trust]
+signed-by = "ci-pipeline"
+
+[dust]
+# (no dust rules defined)
+
+[intend]
+operational-ready = true
+security-critical = true

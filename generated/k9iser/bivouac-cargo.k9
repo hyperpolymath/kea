@@ -1,0 +1,18 @@
+# Auto-generated K9 contract for bivouac-cargo
+# Safety tier: yard
+
+[must]
+package.name : string { == 'kea-bivouac' }
+package.edition : string { == '2021' }
+package.license : string { == 'PMPL-1.0-or-later' }
+profile.release.lto : string { == true }
+profile.release.strip : string { == true }
+
+[trust]
+signed-by = "ci-pipeline"
+
+[dust]
+# (no dust rules defined)
+
+[intend]
+production-ready = true
