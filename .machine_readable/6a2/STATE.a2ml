@@ -7,28 +7,39 @@
 [metadata]
 project = "kea"
 version = "1.0.0"
-last-updated = "2026-03-16"
+last-updated = "2026-04-04"
 status = "active"
-phase = "RSR compliance hardening"
+phase = "CRG compliance and testing"
 
 [project-context]
 name = "Kea — Unified Infrastructure Orchestration Toolkit"
 description = "Monorepo for intelligent infrastructure orchestration, investigation, signalling, and WASM interfaces"
-completion-percentage = 85
+completion-percentage = 87
 target-version = "1.0.0"
 
 [components]
 # Component completion tracking (percentage)
-bivouac = 100      # Command authority / orchestrator — stable
+bivouac = 100      # Command authority / orchestrator — stable, CRG C certified
 call = 100         # Cap'n Proto / MCP signalling — stable
 mandible = 80      # Sensor suite — WP-Praxis and Slop-Gate refining
 wit = 70           # WIT interface definitions — spec in progress
 
 [components.mandible-crates]
-kea-beak = 100     # Filesystem/network auditor — verified
+kea-beak = 100     # Filesystem/network auditor — verified, 5 unit tests
 kea-mandible = 80  # CLI orchestrator — functional, needs polish
-wp-praxis = 80     # WordPress auditor — core audit working, edge cases remain
-slop-gate = 60     # Bloat detection — initial heuristics, needs tuning
+wp-praxis = 80     # WordPress auditor — core audit working, 3 unit tests
+slop-gate = 70     # Bloat detection — 5 unit tests, thresholds refining
+
+[testing-status]
+bivouac-crg-grade = "C"
+bivouac-unit-tests = 22
+bivouac-property-tests = 5
+bivouac-e2e-tests = 5
+bivouac-contract-tests = 11
+bivouac-aspect-tests = 10
+bivouac-total-tests = 53
+bivouac-benchmarks = 5
+bivouac-test-coverage = "comprehensive"
 
 [route-to-mvp]
 # Ordered by priority — shortest path to functioning system
