@@ -28,7 +28,15 @@ pub enum BivouacError {
     #[error("mTLS configuration error: {message}")]
     MtlsError { message: String },
 
+    /// CONFIG: A configuration field is invalid or inconsistent.
+    #[error("Invalid configuration: {message}")]
+    InvalidConfig { message: String },
+
     /// BRIDGE: Wrapped IO or serialization errors.
     #[error("IO error: {0}")]
     IoError(#[from] std::io::Error),
+
+    /// BRIDGE: Wrapped TOML deserialization errors.
+    #[error("TOML parse error: {0}")]
+    TomlError(#[from] toml::de::Error),
 }

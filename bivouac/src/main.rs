@@ -55,10 +55,35 @@ async fn main() -> anyhow::Result<()> {
 
     // DISPATCH: Execute the requested administrative action.
     match cli.command {
-        Commands::Init { force } => init_config(&cli.config, force).await,
-        Commands::Execute { playbook } => execute_playbook(&cli.config, &playbook, cli.dry_run).await,
-        Commands::Trigger { trigger_type } => trigger_playbook(&cli.config, &trigger_type, cli.dry_run).await,
-        // ... [Remaining handlers]
+        Commands::Init { force } => {
+            if !force && cli.config.exists() {
+                info!("Config already exists at {:?}. Use --force to overwrite.", cli.config);
+            } else {
+                let default_config = r#"name = "bivouac"
+version = "0.1.0"
+"#;
+                std::fs::write(&cli.config, default_config)
+                    .with_context(|| format!("Failed to write config to {:?}", cli.config))?;
+                info!("Initialized config at {:?}", cli.config);
+            }
+            Ok(())
+        },
+        Commands::Execute { playbook } => {
+            let config = Config::from_file(&cli.config)
+                .with_context(|| format!("Failed to load config from {:?}", cli.config))?;
+            let pb = kea_bivouac::playbook::load_playbook(&playbook)
+                .with_context(|| format!("Failed to load playbook '{}'", playbook))?;
+            let executor = PlaybookExecutor { dry_run: cli.dry_run };
+            let result = executor.execute(&pb).await
+                .with_context(|| "Playbook execution failed")?;
+            info!("Playbook '{}' completed: success={}", result.playbook_name, result.success);
+            let _ = config;
+            Ok(())
+        },
+        Commands::Trigger { trigger_type } => {
+            info!("Trigger '{}' not yet implemented", trigger_type);
+            Ok(())
+        },
         _ => Ok(())
     }
 }

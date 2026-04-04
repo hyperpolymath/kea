@@ -24,6 +24,17 @@ pub fn load_playbook<P: AsRef<Path>>(path: P) -> Result<Playbook> {
 
 /// DISCOVERY: Scans a directory for valid playbook files (*.toml, *.scm).
 pub fn list_playbooks<P: AsRef<Path>>(dir: P) -> Result<Vec<String>> {
-    // ... [Directory iteration and extension filtering logic]
+    let mut playbooks = Vec::new();
+    for entry in std::fs::read_dir(dir.as_ref())? {
+        let entry = entry?;
+        let path = entry.path();
+        if let Some(ext) = path.extension().and_then(|e| e.to_str()) {
+            if ext == "toml" || ext == "scm" {
+                if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+                    playbooks.push(name.to_string());
+                }
+            }
+        }
+    }
     Ok(playbooks)
 }

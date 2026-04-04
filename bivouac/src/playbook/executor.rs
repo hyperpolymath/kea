@@ -13,19 +13,22 @@
 //! - **RotateDns**: Triggers a DNS record update via the RRecord Fluctuator.
 //! - **RestartService**: Orchestrates a safe service bounce.
 
-use std::process::Stdio;
-use std::time::Duration;
-use tokio::process::Command;
-use tokio::time::timeout;
-use tracing::{debug, error, info, warn};
-
 use super::{Playbook, PlaybookAction};
-use crate::error::{BivouacError, Result};
+use crate::error::Result;
 
 /// ORCHESTRATOR: Manages the sequential execution of a Playbook.
 pub struct PlaybookExecutor {
     /// SAFETY: If true, actions are logged but not physically executed.
     pub dry_run: bool,
+}
+
+/// REPORT: The outcome of a single playbook action.
+#[derive(Debug)]
+pub struct ActionResult {
+    pub success: bool,
+    pub output: Option<String>,
+    pub error: Option<String>,
+    pub duration_ms: u64,
 }
 
 /// REPORT: The results of an entire playbook run.
@@ -51,8 +54,64 @@ impl PlaybookExecutor {
     }
 
     /// INTERNAL: Dispatches a single `PlaybookAction` to its specific runner.
-    async fn execute_action(&self, action: &PlaybookAction, _timeout_secs: u64) -> ActionResult {
+    async fn execute_action(&self, _action: &PlaybookAction, _timeout_secs: u64) -> ActionResult {
         // ... [Switch on action type]
         ActionResult { success: true, output: None, error: None, duration_ms: 0 }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_playbook_executor_execute_empty_actions() {
+        let executor = PlaybookExecutor { dry_run: true };
+        let playbook = Playbook {
+            name: "test".to_string(),
+            description: "Test playbook".to_string(),
+            trigger: crate::playbook::PlaybookTrigger::Manual,
+            actions: vec![],
+            continue_on_error: false,
+            timeout_secs: 300,
+        };
+        let result = executor.execute(&playbook).await.unwrap();
+        assert_eq!(result.playbook_name, "test");
+        assert!(result.success);
+        assert!(result.action_results.is_empty());
+    }
+
+    #[tokio::test]
+    async fn test_playbook_executor_dry_run_mode() {
+        let executor = PlaybookExecutor { dry_run: true };
+        assert!(executor.dry_run);
+    }
+
+    #[test]
+    fn test_action_result_creation() {
+        let result = ActionResult {
+            success: true,
+            output: Some("test output".to_string()),
+            error: None,
+            duration_ms: 150,
+        };
+        assert!(result.success);
+        assert_eq!(result.output, Some("test output".to_string()));
+        assert!(result.error.is_none());
+        assert_eq!(result.duration_ms, 150);
+    }
+
+    #[test]
+    fn test_playbook_result_creation() {
+        let result = PlaybookResult {
+            playbook_name: "test-playbook".to_string(),
+            success: true,
+            action_results: vec![],
+            total_duration_ms: 1000,
+        };
+        assert_eq!(result.playbook_name, "test-playbook");
+        assert!(result.success);
+        assert!(result.action_results.is_empty());
+        assert_eq!(result.total_duration_ms, 1000);
     }
 }
