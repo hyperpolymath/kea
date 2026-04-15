@@ -5,6 +5,8 @@
 # See TOPOLOGY.md for architecture map, README.adoc for quick start.
 
 # Default recipe — show available commands
+import? "contractile.just"
+
 default:
     @just --list
 
