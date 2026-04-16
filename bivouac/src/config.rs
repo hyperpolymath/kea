@@ -170,7 +170,7 @@ mod tests {
     fn test_deployment_config_serde_defaults() {
         // When deserialized from TOML with nomadic but no interval, serde default applies
         let toml_content = "nomadic = true\n";
-        let deployment: DeploymentConfig = toml::from_str(toml_content).unwrap();
+        let deployment: DeploymentConfig = toml::from_str(toml_content).expect("TODO: handle error");
         assert_eq!(deployment.fluctuation_interval_secs, 3600);
         assert!(deployment.nomadic);
     }

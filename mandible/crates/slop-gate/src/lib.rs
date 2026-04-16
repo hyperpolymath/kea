@@ -714,7 +714,7 @@ mod tests {
 
         let item = slop_gate.check_temp_file(&temp_file);
         assert!(item.is_some());
-        assert_eq!(item.unwrap().category, BloatCategory::TemporaryFile);
+        assert_eq!(item.expect("TODO: handle error").category, BloatCategory::TemporaryFile);
     }
 
     #[test]
@@ -734,7 +734,7 @@ mod tests {
 
         let item = slop_gate.check_source_map(&map_file);
         assert!(item.is_some());
-        assert_eq!(item.unwrap().category, BloatCategory::SourceMap);
+        assert_eq!(item.expect("TODO: handle error").category, BloatCategory::SourceMap);
     }
 
     #[test]
@@ -754,7 +754,7 @@ mod tests {
 
         let item = slop_gate.check_backup_file(&backup_file);
         assert!(item.is_some());
-        assert_eq!(item.unwrap().category, BloatCategory::BackupFile);
+        assert_eq!(item.expect("TODO: handle error").category, BloatCategory::BackupFile);
     }
 
     #[test]

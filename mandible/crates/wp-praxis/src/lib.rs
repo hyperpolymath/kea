@@ -788,16 +788,16 @@ mod tests {
         };
 
         // This test would need actual file content to work
-        let findings = auditor.audit_file(&file).await.unwrap();
+        let findings = auditor.audit_file(&file).await.expect("TODO: handle error");
         // Without file content, no findings expected
         assert!(findings.is_empty());
     }
 
     #[tokio::test]
     async fn test_plugin_info_parsing() {
-        let temp_dir = TempDir::new().unwrap();
+        let temp_dir = TempDir::new().expect("TODO: handle error");
         let plugin_dir = temp_dir.path().join("test-plugin");
-        std::fs::create_dir(&plugin_dir).unwrap();
+        std::fs::create_dir(&plugin_dir).expect("TODO: handle error");
 
         // Create a plugin file with headers
         let plugin_content = r#"<?php
@@ -807,9 +807,9 @@ mod tests {
  * Author: Test Author
  */
 "#;
-        std::fs::write(plugin_dir.join("test-plugin.php"), plugin_content).unwrap();
+        std::fs::write(plugin_dir.join("test-plugin.php"), plugin_content).expect("TODO: handle error");
 
-        let plugin = PluginInfo::from_directory(&plugin_dir).await.unwrap();
+        let plugin = PluginInfo::from_directory(&plugin_dir).await.expect("TODO: handle error");
         assert_eq!(plugin.slug, "test-plugin");
         assert_eq!(plugin.name, Some("Test Plugin".to_string()));
         assert_eq!(plugin.version, Some("1.0.0".to_string()));
@@ -817,9 +817,9 @@ mod tests {
 
     #[tokio::test]
     async fn test_theme_info_parsing() {
-        let temp_dir = TempDir::new().unwrap();
+        let temp_dir = TempDir::new().expect("TODO: handle error");
         let theme_dir = temp_dir.path().join("test-theme");
-        std::fs::create_dir(&theme_dir).unwrap();
+        std::fs::create_dir(&theme_dir).expect("TODO: handle error");
 
         // Create a style.css with headers
         let style_content = r#"/*
@@ -828,9 +828,9 @@ Version: 2.0.0
 Author: Theme Author
 */
 "#;
-        std::fs::write(theme_dir.join("style.css"), style_content).unwrap();
+        std::fs::write(theme_dir.join("style.css"), style_content).expect("TODO: handle error");
 
-        let theme = ThemeInfo::from_directory(&theme_dir).await.unwrap();
+        let theme = ThemeInfo::from_directory(&theme_dir).await.expect("TODO: handle error");
         assert_eq!(theme.slug, "test-theme");
         assert_eq!(theme.name, Some("Test Theme".to_string()));
         assert_eq!(theme.version, Some("2.0.0".to_string()));

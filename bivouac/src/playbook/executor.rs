@@ -75,7 +75,7 @@ mod tests {
             continue_on_error: false,
             timeout_secs: 300,
         };
-        let result = executor.execute(&playbook).await.unwrap();
+        let result = executor.execute(&playbook).await.expect("TODO: handle error");
         assert_eq!(result.playbook_name, "test");
         assert!(result.success);
         assert!(result.action_results.is_empty());

@@ -93,8 +93,8 @@ mod tests {
     #[test]
     fn test_playbook_trigger_manual_serde() {
         let trigger = PlaybookTrigger::Manual;
-        let serialized = toml::to_string(&trigger).unwrap();
-        let deserialized: PlaybookTrigger = toml::from_str(&serialized).unwrap();
+        let serialized = toml::to_string(&trigger).expect("TODO: handle error");
+        let deserialized: PlaybookTrigger = toml::from_str(&serialized).expect("TODO: handle error");
         assert_eq!(trigger, deserialized);
     }
 
@@ -103,8 +103,8 @@ mod tests {
         let trigger = PlaybookTrigger::Schedule {
             cron: "0 0 * * *".to_string(),
         };
-        let serialized = toml::to_string(&trigger).unwrap();
-        let deserialized: PlaybookTrigger = toml::from_str(&serialized).unwrap();
+        let serialized = toml::to_string(&trigger).expect("TODO: handle error");
+        let deserialized: PlaybookTrigger = toml::from_str(&serialized).expect("TODO: handle error");
         assert_eq!(trigger, deserialized);
     }
 
@@ -113,8 +113,8 @@ mod tests {
         let trigger = PlaybookTrigger::HealthCheckFailure {
             service: "api-server".to_string(),
         };
-        let serialized = toml::to_string(&trigger).unwrap();
-        let deserialized: PlaybookTrigger = toml::from_str(&serialized).unwrap();
+        let serialized = toml::to_string(&trigger).expect("TODO: handle error");
+        let deserialized: PlaybookTrigger = toml::from_str(&serialized).expect("TODO: handle error");
         assert_eq!(trigger, deserialized);
     }
 
@@ -196,8 +196,8 @@ mod tests {
         let action = PlaybookAction::Wait {
             duration_secs: 120,
         };
-        let serialized = toml::to_string(&action).unwrap();
-        let deserialized: PlaybookAction = toml::from_str(&serialized).unwrap();
+        let serialized = toml::to_string(&action).expect("TODO: handle error");
+        let deserialized: PlaybookAction = toml::from_str(&serialized).expect("TODO: handle error");
         match (action, deserialized) {
             (
                 PlaybookAction::Wait { duration_secs: d1 },
@@ -226,7 +226,7 @@ level = "info"
 message = "Starting playbook"
 "#;
         let path = std::path::Path::new("test.toml");
-        let playbook = Playbook::from_toml(toml_content, path).unwrap();
+        let playbook = Playbook::from_toml(toml_content, path).expect("TODO: handle error");
         assert_eq!(playbook.name, "test-playbook");
         assert_eq!(playbook.description, "A test playbook");
         assert!(!playbook.continue_on_error);
@@ -249,8 +249,8 @@ message = "Starting playbook"
             args: vec!["-c".to_string(), "echo 'hello'".to_string()],
             timeout_secs: Some(10),
         };
-        let serialized = toml::to_string(&action).unwrap();
-        let deserialized: PlaybookAction = toml::from_str(&serialized).unwrap();
+        let serialized = toml::to_string(&action).expect("TODO: handle error");
+        let deserialized: PlaybookAction = toml::from_str(&serialized).expect("TODO: handle error");
         match (action, deserialized) {
             (
                 PlaybookAction::Command { command: c1, args: a1, timeout_secs: t1 },

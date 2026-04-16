@@ -585,14 +585,14 @@ mod tests {
 
     #[tokio::test]
     async fn test_audit_empty_directory() {
-        let temp_dir = TempDir::new().unwrap();
+        let temp_dir = TempDir::new().expect("TODO: handle error");
         let configuration = AuditConfiguration {
             target_path: temp_dir.path().to_path_buf(),
             ..Default::default()
         };
 
         let engine = BeakEngine::new(configuration);
-        let report = engine.run_audit().await.unwrap();
+        let report = engine.run_audit().await.expect("TODO: handle error");
 
         assert_eq!(report.statistics.files_scanned, 0);
         assert!(report.findings.is_empty());
@@ -600,11 +600,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_audit_with_files() {
-        let temp_dir = TempDir::new().unwrap();
+        let temp_dir = TempDir::new().expect("TODO: handle error");
 
         // Create some test files
-        std::fs::write(temp_dir.path().join("test.txt"), "hello").unwrap();
-        std::fs::write(temp_dir.path().join("data.json"), "{}").unwrap();
+        std::fs::write(temp_dir.path().join("test.txt"), "hello").expect("TODO: handle error");
+        std::fs::write(temp_dir.path().join("data.json"), "{}").expect("TODO: handle error");
 
         let configuration = AuditConfiguration {
             target_path: temp_dir.path().to_path_buf(),
@@ -612,7 +612,7 @@ mod tests {
         };
 
         let engine = BeakEngine::new(configuration);
-        let report = engine.run_audit().await.unwrap();
+        let report = engine.run_audit().await.expect("TODO: handle error");
 
         assert_eq!(report.statistics.files_scanned, 2);
     }
@@ -630,7 +630,7 @@ mod tests {
             is_hidden: false,
         };
 
-        let findings = auditor.audit_file(&file_info).await.unwrap();
+        let findings = auditor.audit_file(&file_info).await.expect("TODO: handle error");
         assert_eq!(findings.len(), 1);
         assert_eq!(findings[0].finding_id, "SEC001");
     }
