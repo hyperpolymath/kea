@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: PMPL-1.0-or-later
+;; SPDX-License-Identifier: MPL-2.0
 ;; Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 ;;
 ;; 0-AI-MANIFEST.a2ml — AI Agent Entry Point
@@ -59,15 +59,15 @@ intelligence (Wit).
 ;; === CRITICAL INVARIANTS ===
 ;; - This is a MONOREPO: single .git root, no .git dirs in subprojects
 ;; - No .github/ directories in subprojects (all CI/CD at root)
-;; - SPDX headers on ALL files (PMPL-1.0-or-later)
+;; - SPDX headers on ALL files (MPL-2.0)
 ;; - No believe_me, assert_total, sorry, Admitted, unsafeCoerce, Obj.magic
 ;; - SCM/A2ML files ONLY in .machine_readable/6a2/ (never root, never subprojects)
 ;; - Author: Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 ;; - Git email: 6759885+hyperpolymath@users.noreply.github.com
-;; - License: PMPL-1.0-or-later (MPL-2.0 in root LICENSE for tooling compat)
+;; - License: MPL-2.0 (MPL-2.0 in root LICENSE for tooling compat)
 ;; - No TypeScript, Python, Go, Node.js, npm, Bun
 ;; - Containers: Chainguard base, Containerfile (not Dockerfile), Podman (not Docker)
-;; - ABI: Idris2 | FFI: Zig | API: V-lang
+;; - ABI: Idris2 | FFI: Zig | API: zig
 
 ;; === LANGUAGE MAP ===
 ;; Rust    → bivouac/src/, mandible/crates/*/src/ (systems, CLI, sensors)

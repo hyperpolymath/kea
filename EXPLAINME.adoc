@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 // Copyright (c) 2024-2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = Kea: Unified Infrastructure Orchestration Toolkit — Show Me The Receipts
 :toc:
@@ -118,7 +118,7 @@ No downstream consumer yet has Kea wired in at runtime — the account dependenc
 | 17 RSR-standard CI workflows (CodeQL, Hypatia, Scorecard, TruffleHog, etc.)
 
 | `LICENSES/`
-| PMPL-1.0-or-later.txt (primary) + MPL-2.0.txt (tooling compat fallback; see NOTICE)
+| MPL-2.0.txt (primary) + MPL-2.0.txt (tooling compat fallback; see NOTICE)
 
 | `.machine_readable/6a2/`
 | A2ML machine-readable state, ecosystem, and meta artefacts

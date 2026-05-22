@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # STATE.a2ml — Project state checkpoint
@@ -60,4 +60,4 @@ action-1 = "Complete Slop-Gate heuristic engine (60% → 90%)"
 action-2 = "Formalise WIT interfaces for Mandible ↔ Bivouac communication"
 action-3 = "Add ABI layer (Idris2) for cross-component type safety"
 action-4 = "Add FFI layer (Zig) for C-compatible sensor plugins"
-action-5 = "Publish V-lang API connectors for external integrations"
+action-5 = "Publish zig API connectors for external integrations"

@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # ECOSYSTEM.a2ml — Ecosystem position and relationships
@@ -23,7 +23,7 @@ panic-attacker = { relationship = "tooling", purpose = "Pre-commit security scan
 hypatia = { relationship = "tooling", purpose = "Neurosymbolic CI/CD security scanning" }
 
 # Potential integrations
-developer-ecosystem = { relationship = "upstream", purpose = "V-lang API connectors for Kea" }
+developer-ecosystem = { relationship = "upstream", purpose = "zig API connectors for Kea" }
 ambientops = { relationship = "sibling", purpose = "Personal sysadmin tools — Kea audits what AmbientOps manages" }
 laniakea = { relationship = "sibling", purpose = "Shared infrastructure patterns" }
 
@@ -35,4 +35,4 @@ runtime = "Deno (where JS needed)"
 configuration = "TOML, Nickel"
 abi = "Idris2 (planned)"
 ffi = "Zig (planned)"
-api = "V-lang (planned)"
+api = "zig (planned)"

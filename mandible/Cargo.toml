@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Kea-Mandible: High-dexterity investigative sensors for Kea
 
 [workspace]
@@ -14,7 +14,7 @@ members = [
 version = "1.0.0"
 authors = ["Jonathan D.A. Jewell <6759885+hyperpolymath@users.noreply.github.com>"]
 edition = "2021"
-license = "PMPL-1.0-or-later"
+license = "MPL-2.0"
 repository = "https://github.com/hyperpolymath/kea"
 description = "High-dexterity investigative sensors for Kea ecosystem"
 keywords = ["audit", "security", "filesystem", "wordpress"]

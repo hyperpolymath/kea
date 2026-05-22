@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 //! WP-Praxis: Specialized WordPress environment auditor
 //!
 //! This crate provides WordPress-specific auditing capabilities including:

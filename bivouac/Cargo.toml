@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Kea-Bivouac: Orchestration and deployment controller for the Kea ecosystem
 
 [package]
@@ -7,7 +7,7 @@ version = "1.0.0"
 edition = "2021"
 authors = ["Jonathan D.A. Jewell <6759885+hyperpolymath@users.noreply.github.com>"]
 description = "Orchestration and deployment controller for the Kea ecosystem"
-license = "PMPL-1.0-or-later"
+license = "MPL-2.0"
 repository = "https://github.com/hyperpolymath/kea"
 readme = "README.adoc"
 keywords = ["orchestration", "deployment", "kea", "mtls", "zero-trust"]

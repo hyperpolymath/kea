@@ -4,7 +4,7 @@
 [must]
 package.name : string { == 'kea-bivouac' }
 package.edition : string { == '2021' }
-package.license : string { == 'PMPL-1.0-or-later' }
+package.license : string { == 'MPL-2.0' }
 profile.release.lto : string { == true }
 profile.release.strip : string { == true }
 

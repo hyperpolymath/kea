@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Playbook: Handle integrity violations
 #
 # This playbook is triggered when the system detects an integrity violation,

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 // SPDX-FileCopyrightText: 2024-2026 Jonathan D.A. Jewell
 
 = Kea: Unified Infrastructure Orchestration Toolkit
@@ -101,7 +101,7 @@ kea/
 ├── justfile                   # Top-level build recipes
 ├── TOPOLOGY.md                # Architecture map and completion dashboard
 ├── LICENSE                    # MPL-2.0 (tooling compat; see NOTICE)
-├── LICENSES/                  # PMPL-1.0-or-later.txt + MPL-2.0.txt
+├── LICENSES/                  # MPL-2.0.txt + MPL-2.0.txt
 └── NOTICE                     # Licensing explanation
 ----
 
@@ -135,7 +135,7 @@ Per the Hyperpolymath language policy:
 |Zig
 
 |API (planned)
-|V-lang
+|zig
 |===
 
 == Roadmap
@@ -151,7 +151,7 @@ Per the Hyperpolymath language policy:
 
 * Idris2 ABI definitions for cross-component type safety
 * Zig FFI layer for C-compatible sensor plugins
-* V-lang API connectors for external integrations
+* zig API connectors for external integrations
 
 === Phase 3: Distribution
 
@@ -161,7 +161,7 @@ Per the Hyperpolymath language policy:
 
 == License
 
-Licensed under link:LICENSES/PMPL-1.0-or-later.txt[PMPL-1.0-or-later] (Palimpsest License).
+Licensed under link:LICENSES/MPL-2.0.txt[MPL-2.0] (Palimpsest License).
 
 The root `LICENSE` file contains MPL-2.0 for tooling compatibility. See link:NOTICE[NOTICE] for details.
 

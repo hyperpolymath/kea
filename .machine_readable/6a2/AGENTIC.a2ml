@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # AGENTIC.a2ml — AI agent constraints and capabilities
@@ -25,11 +25,11 @@ can-edit-playbooks = true
 # - Never commit secrets or credentials
 # - Never use banned languages (TypeScript, Python, Go, Node.js, npm, Bun)
 # - Never place state files in repository root (must be in .machine_readable/6a2/)
-# - Never use AGPL license (use PMPL-1.0-or-later)
+# - Never use AGPL license (use MPL-2.0)
 # - Never create .github/ directories in subprojects (all CI/CD at root)
 # - Never create .git directories in subprojects (monorepo)
 # - Never use Docker/Dockerfile (use Podman/Containerfile)
-# - ABI must use Idris2, FFI must use Zig, API must use V-lang
+# - ABI must use Idris2, FFI must use Zig, API must use zig
 
 [agent-workflow]
 # Before modifying code:

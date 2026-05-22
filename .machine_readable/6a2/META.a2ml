@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 # Copyright (c) 2024-2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # META.a2ml — Project meta-information
@@ -9,7 +9,7 @@ project = "kea"
 version = "1.0.0"
 author = "Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>"
 git-email = "6759885+hyperpolymath@users.noreply.github.com"
-license = "PMPL-1.0-or-later"
+license = "MPL-2.0"
 license-fallback = "MPL-2.0"
 standard = "RSR 2026"
 repository = "https://github.com/hyperpolymath/kea"
@@ -33,7 +33,7 @@ adr-004-summary = "Components named after Kea behaviours: bivouac (roosting), ca
 
 # ADR-005: ABI/FFI/API triple architecture
 adr-005-status = "proposed"
-adr-005-summary = "Idris2 ABI, Zig FFI, V-lang API for cross-language interop"
+adr-005-summary = "Idris2 ABI, Zig FFI, zig API for cross-language interop"
 
 [development-practices]
 ci-cd = "GitHub Actions (17 RSR-standard workflows)"

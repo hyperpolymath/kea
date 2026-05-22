@@ -1,5 +1,5 @@
 # k9iser manifest — wrap configs into self-validating K9 contracts
-# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-License-Identifier: MPL-2.0
 #
 # kea: orchestration and deployment controller — bivouac (Rust) + mandible.
 # Infrastructure tooling with mTLS, zero-trust, and playbook-driven automation.
@@ -18,7 +18,7 @@ format = "toml"
 must = [
   "package.name == 'kea-bivouac'",
   "package.edition == '2021'",
-  "package.license == 'PMPL-1.0-or-later'",
+  "package.license == 'MPL-2.0'",
   "package.repository is non-empty",
   "dependencies.tokio is set",                          # async runtime required
   "dependencies.rustls is set",                         # TLS required (mTLS)
@@ -77,7 +77,7 @@ name = "container-build"
 source = "stapeln.toml"
 format = "toml"
 must = [
-  "metadata.license == 'PMPL-1.0-or-later'",
+  "metadata.license == 'MPL-2.0'",
   "metadata.registry == 'ghcr.io/hyperpolymath'",
   "build.runtime == 'podman'",
   "layers.base.from starts-with 'cgr.dev/chainguard/'",

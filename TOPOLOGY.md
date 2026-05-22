@@ -1,4 +1,4 @@
-<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
+<!-- SPDX-License-Identifier: MPL-2.0 -->
 <!-- TOPOLOGY.md — Project architecture map and completion dashboard -->
 <!-- Last updated: 2026-03-16 -->
 
@@ -46,7 +46,7 @@
 
                         ┌─────────────────────────────────────────┐
                         │          ABI / FFI / API LAYER          │
-                        │  Idris2 (ABI)  Zig (FFI)  V-lang (API) │
+                        │  Idris2 (ABI)  Zig (FFI)  zig (API) │
                         │         (Planned — Phase 2)             │
                         └─────────────────────────────────────────┘
 
@@ -85,7 +85,7 @@ REPO INFRASTRUCTURE
 ABI / FFI / API (PLANNED)
   Idris2 ABI Definitions            ░░░░░░░░░░   0%    Not started — Phase 2
   Zig FFI Implementation            ░░░░░░░░░░   0%    Not started — Phase 2
-  V-lang API Connectors             ░░░░░░░░░░   0%    Not started — Phase 2
+  zig API Connectors             ░░░░░░░░░░   0%    Not started — Phase 2
 
 ─────────────────────────────────────────────────────────────────────────────
 OVERALL:                            █████████░  ~85%   MVP target: Slop-Gate + WIT + E2E
@@ -133,7 +133,7 @@ Kea-Mandible                  Kea-Call                    Kea-Bivouac
 
 - Add Idris2 ABI definitions in `src/abi/` for cross-component type safety
 - Add Zig FFI layer in `ffi/zig/` for C-compatible sensor plugins
-- Publish V-lang API connectors from `developer-ecosystem/v-ecosystem/`
+- Publish zig API connectors from `developer-ecosystem/v-ecosystem/`
 - BoJ-server integration: Kea sensors as MCP cartridge data sources
 
 ## Update Protocol

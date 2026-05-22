@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
 // SPDX-FileCopyrightText: 2024-2025 hyperpolymath
 
 = Kea Wit
@@ -63,7 +63,7 @@ kea-wit/
 ├── .github/               # GitHub workflows and templates
 ├── CODE_OF_CONDUCT.md     # Community guidelines (template)
 ├── CONTRIBUTING.md        # Contribution guide (template)
-├── LICENSE.txt            # MIT OR PMPL-1.0-or-later
+├── LICENSE.txt            # MIT OR MPL-2.0
 ├── README.adoc            # This file
 ├── ROADMAP.adoc           # Development roadmap
 └── SECURITY.md            # Security policy
@@ -71,7 +71,7 @@ kea-wit/
 
 == License
 
-Dual-licensed under link:LICENSE.txt[MIT OR PMPL-1.0-or-later].
+Dual-licensed under link:LICENSE.txt[MIT OR MPL-2.0].
 
 Includes non-binding encouragement of https://github.com/hyperpolymath/palimpsest-license[Palimpsest License] principles for consent-based digital interaction.
 
