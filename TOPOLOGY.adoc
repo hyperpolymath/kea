@@ -1,12 +1,8 @@
-<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
-<!-- TOPOLOGY.md — Project architecture map and completion dashboard -->
-<!-- Last updated: 2026-03-16 -->
+== Kea — Project Topology
 
-# Kea — Project Topology
+=== System Architecture
 
-## System Architecture
-
-```
+....
                         ┌─────────────────────────────────────────┐
                         │              OPERATOR / ADMIN           │
                         │        (Playbooks, CLI, Dashboard)      │
@@ -56,11 +52,11 @@
                         │  Justfile Automation   Chainguard Images│
                         │  panic-attack Scans    Hypatia Security │
                         └─────────────────────────────────────────┘
-```
+....
 
-## Completion Dashboard
+=== Completion Dashboard
 
-```
+....
 COMPONENT                          STATUS              NOTES
 ─────────────────────────────────  ──────────────────  ─────────────────────────────────
 CORE ECOSYSTEM
@@ -89,11 +85,11 @@ ABI / FFI / API (PLANNED)
 
 ─────────────────────────────────────────────────────────────────────────────
 OVERALL:                            █████████░  ~85%   MVP target: Slop-Gate + WIT + E2E
-```
+....
 
-## Data Flow
+=== Data Flow
 
-```
+....
 Kea-Mandible                  Kea-Call                    Kea-Bivouac
 (Sensor Suite)                (Protocol)                  (Orchestrator)
     │                             │                           │
@@ -106,44 +102,62 @@ Kea-Mandible                  Kea-Call                    Kea-Bivouac
     │                             │                           │  5. Deploy fix/alert
     │◄────────────── Feedback ────┤◄──────────────────────────│
     │  6. Re-probe to verify      │                           │
-```
+....
 
-## Subproject Index
+=== Subproject Index
 
-| Component | Directory | Language | Status | MVP Gap |
-|-----------|-----------|----------|--------|---------|
-| Kea-Bivouac | `bivouac/` | Rust | Stable | None |
-| Kea-Call | `call/` | Cap'n Proto/MCP | Stable | None |
-| Kea-Beak | `mandible/crates/kea-beak/` | Rust | Stable | None |
-| Kea-Mandible CLI | `mandible/crates/kea-mandible/` | Rust | 80% | Output formats, help text |
-| WP-Praxis | `mandible/crates/wp-praxis/` | Rust | 80% | Multisite, custom themes |
-| Slop-Gate | `mandible/crates/slop-gate/` | Rust | 60% | Heuristic tuning, thresholds |
-| Kea-Wit | `wit/` | WIT | 70% | Formal spec (see ROADMAP.adoc) |
+[width="100%",cols="24%,22%,20%,16%,18%",options="header",]
+|===
+|Component |Directory |Language |Status |MVP Gap
+|Kea-Bivouac |`+bivouac/+` |Rust |Stable |None
 
-## Shortest Route to MVP
+|Kea-Call |`+call/+` |Cap’n Proto/MCP |Stable |None
 
-1. **Slop-Gate** (60% → 90%): Tune heuristics, add configurable thresholds, test against real hosting dirs
-2. **WP-Praxis** (80% → 95%): WordPress multisite support, custom theme detection
-3. **Kea-Wit** (70% → 90%): Formalise WIT interfaces for Mandible ↔ Bivouac pipeline
-4. **Kea-Mandible CLI** (80% → 95%): JSON/TOML output formats, improved help text
-5. **E2E Integration**: Full Mandible → Call → Bivouac pipeline test
-6. **Container Build**: Chainguard-based OCI image for deployment
+|Kea-Beak |`+mandible/crates/kea-beak/+` |Rust |Stable |None
 
-## Phase 2 (Post-MVP)
+|Kea-Mandible CLI |`+mandible/crates/kea-mandible/+` |Rust |80% |Output
+formats, help text
 
-- Add Idris2 ABI definitions in `src/abi/` for cross-component type safety
-- Add Zig FFI layer in `ffi/zig/` for C-compatible sensor plugins
-- Publish zig API connectors from `developer-ecosystem/v-ecosystem/`
-- BoJ-server integration: Kea sensors as MCP cartridge data sources
+|WP-Praxis |`+mandible/crates/wp-praxis/+` |Rust |80% |Multisite, custom
+themes
 
-## Update Protocol
+|Slop-Gate |`+mandible/crates/slop-gate/+` |Rust |60% |Heuristic tuning,
+thresholds
+
+|Kea-Wit |`+wit/+` |WIT |70% |Formal spec (see ROADMAP.adoc)
+|===
+
+=== Shortest Route to MVP
+
+[arabic]
+. *Slop-Gate* (60% → 90%): Tune heuristics, add configurable thresholds,
+test against real hosting dirs
+. *WP-Praxis* (80% → 95%): WordPress multisite support, custom theme
+detection
+. *Kea-Wit* (70% → 90%): Formalise WIT interfaces for Mandible ↔ Bivouac
+pipeline
+. *Kea-Mandible CLI* (80% → 95%): JSON/TOML output formats, improved
+help text
+. *E2E Integration*: Full Mandible → Call → Bivouac pipeline test
+. *Container Build*: Chainguard-based OCI image for deployment
+
+=== Phase 2 (Post-MVP)
+
+* Add Idris2 ABI definitions in `+src/abi/+` for cross-component type
+safety
+* Add Zig FFI layer in `+ffi/zig/+` for C-compatible sensor plugins
+* Publish zig API connectors from `+developer-ecosystem/v-ecosystem/+`
+* BoJ-server integration: Kea sensors as MCP cartridge data sources
+
+=== Update Protocol
 
 This file is maintained by both humans and AI agents. When updating:
 
-1. **After completing a component**: Change its bar and percentage
-2. **After adding a component**: Add a new row in the appropriate section
-3. **After architectural changes**: Update the ASCII diagram
-4. **Date**: Update the `Last updated` comment at the top of this file
+[arabic]
+. *After completing a component*: Change its bar and percentage
+. *After adding a component*: Add a new row in the appropriate section
+. *After architectural changes*: Update the ASCII diagram
+. *Date*: Update the `+Last updated+` comment at the top of this file
 
-Progress bars use: `█` (filled) and `░` (empty), 10 characters wide.
-Percentages: 0%, 10%, 20%, ... 100% (in 10% increments).
+Progress bars use: `+█+` (filled) and `+░+` (empty), 10 characters wide.
+Percentages: 0%, 10%, 20%, … 100% (in 10% increments).
