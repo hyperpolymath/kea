@@ -48,7 +48,7 @@ Detailed milestones and deliverables will be defined once the core specification
 
 == Contributing
 
-See link:CONTRIBUTING.md[CONTRIBUTING.md] for contribution guidelines.
+See link:../.github/CONTRIBUTING.md[CONTRIBUTING.md] for contribution guidelines.
 
 Once the specification is available, issues will be labelled with:
 
