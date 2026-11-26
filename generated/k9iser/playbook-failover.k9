@@ -1,5 +1,12 @@
+K9!
+# SPDX-License-Identifier: MPL-2.0
 # Auto-generated K9 contract for playbook-failover
 # Safety tier: yard
+
+metadata:
+  name: playbook-failover
+  version: 1.0.0
+  leash: yard
 
 [must]
 name : string { == 'failover' }
