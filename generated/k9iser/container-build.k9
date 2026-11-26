@@ -1,5 +1,12 @@
+K9!
+# SPDX-License-Identifier: MPL-2.0
 # Auto-generated K9 contract for container-build
 # Safety tier: yard
+
+metadata:
+  name: container-build
+  version: 1.0.0
+  leash: yard
 
 [must]
 metadata.license : string { == 'MPL-2.0' }
