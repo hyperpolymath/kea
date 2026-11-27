@@ -1,5 +1,12 @@
+K9!
+# SPDX-License-Identifier: MPL-2.0
 # Auto-generated K9 contract for bivouac-cargo
 # Safety tier: yard
+
+metadata:
+  name: bivouac-cargo
+  version: 1.0.0
+  leash: yard
 
 [must]
 package.name : string { == 'kea-bivouac' }
